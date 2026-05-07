@@ -1,0 +1,64 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.set_style("whitegrid")
+
+# ==================================================
+# 🔵 MATPLOTLIB GRAPHS
+# ==================================================
+
+# 1. Line Graph
+x = [1, 2, 3, 4, 5]
+y = [2, 4, 6, 8, 10]
+
+plt.figure()
+plt.plot(x, y)
+plt.title("Matplotlib Line Graph")
+plt.show()
+
+# 2. Bar Chart (Matplotlib)
+labels = ["A", "B", "C"]
+values = [10, 25, 15]
+
+plt.figure()
+plt.bar(labels, values, color="blue")
+plt.title("Matplotlib Bar Chart")
+plt.show()
+
+# 3. Pie Chart
+sizes = [40, 30, 30]
+labels = ["Python", "Java", "C++"]
+
+plt.figure()
+plt.pie(sizes, labels=labels, autopct="%1.1f%%")
+plt.title("Matplotlib Pie Chart")
+plt.show()
+
+# ==================================================
+# 🟢 SEABORN GRAPHS
+# ==================================================
+
+# 4. Count Plot
+data = [1, 2, 2, 3, 3, 3, 4]
+
+plt.figure()
+sns.countplot(x=data)
+plt.title("Seaborn Count Plot")
+plt.show()
+
+# 5. Histogram
+ages = [18, 20, 22, 22, 25, 25, 30, 35]
+
+plt.figure()
+sns.histplot(ages, bins=5, kde=True)
+plt.title("Seaborn Histogram")
+plt.show()
+
+# 6. Bar Chart (Seaborn)
+categories = ["A", "B", "C"]
+values = [10, 25, 15]
+
+plt.figure()
+sns.barplot(x=categories, y=values)
+plt.title("Seaborn Bar Chart")
+plt.show()

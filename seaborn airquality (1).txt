@@ -1,0 +1,122 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Line Plot
+a = [1,2,3,4,5,6,5,4,3,2,1]
+b = [10,20,30,40,50,60,50,40,30,20,10]
+
+plt.plot(a,b)
+plt.xlabel('X axis')
+plt.ylabel('Y axis')
+plt.title('Line Graph')
+plt.show()
+
+# Simple Graph
+x = [1,2,3]
+y = [4,5,1]
+
+plt.plot(x,y)
+plt.title("Simple Plot")
+plt.show()
+
+# Load Dataset
+df = pd.read_csv("AirQuality.csv",sep=';')
+
+# Rename Columns
+df.rename(columns={
+    'T':'Temperature',
+    'RH':'Relative_Humidity',
+    'AH':'Absolute_Humidity'
+},inplace=True)
+
+# Remove Extra Columns
+df.drop(['Unnamed: 15','Unnamed: 16'],
+axis=1,
+inplace=True,
+errors='ignore')
+
+# Convert Numeric Columns
+cols = [
+    'CO(GT)',
+    'C6H6(GT)',
+    'Temperature',
+    'Relative_Humidity',
+    'Absolute_Humidity',
+    'PT08.S1(CO)',
+    'PT08.S5(O3)'
+]
+
+for col in cols:
+    df[col] = pd.to_numeric(
+        df[col].astype(str).str.replace(',','.'),
+        errors='coerce'
+    )
+
+# Handle Missing Values
+df.fillna(df.mean(numeric_only=True),inplace=True)
+
+# Convert Date
+df['Date'] = pd.to_datetime(
+    df['Date'],
+    format='%d/%m/%Y',
+    errors='coerce'
+)
+
+df['Month'] = df['Date'].dt.month
+df['Year'] = df['Date'].dt.year
+
+# Heatmap
+sns.heatmap(
+    df.corr(numeric_only=True),
+    annot=True,
+    cmap='coolwarm'
+)
+plt.title("Correlation Heatmap")
+plt.show()
+
+# Line Plot
+sns.lineplot(
+    data=df,
+    x='Month',
+    y='Temperature'
+)
+plt.title("Temperature by Month")
+plt.show()
+
+# Bar Plot
+sns.barplot(
+    data=df,
+    x='Month',
+    y='CO(GT)'
+)
+plt.title("CO(GT) by Month")
+plt.show()
+
+# Scatter Plot
+sns.scatterplot(
+    data=df,
+    x='PT08.S1(CO)',
+    y='PT08.S5(O3)',
+    hue='Year'
+)
+plt.title("CO vs O3")
+plt.show()
+
+# Pie Chart
+df['CO(GT)'].head().plot.pie(
+    autopct='%1.1f%%'
+)
+plt.title("CO Distribution")
+plt.ylabel("")
+plt.show()
+
+# Histogram
+sns.histplot(
+    df['Temperature'],
+    bins=20,
+    kde=True,
+    color='red'
+)
+plt.title("Temperature Distribution")
+plt.show()
