@@ -1,0 +1,58 @@
+import matplotlib.pyplot as plt
+x = [1,2,3,4,5]
+y = [10,20,30,40,50]
+plt.plot(x,y)
+plt.title("Line chart")
+plt.xlabel("X Axis")
+plt.ylabel("y Axis")
+plt.show()
+
+
+import matplotlib.pyplot as plt
+x = [1,2,3,4,5]
+y = [10,20,30,40,50]
+plt.fill_between(x,y)
+plt.title("Area chart")
+plt.xlabel("X Axis")
+plt.ylabel("y Axis")
+plt.show()
+
+import matplotlib.pyplot as plt
+x = [1,2,3,4,5]
+y = [10,20,30,40,50]
+plt.scatter(x,y)
+plt.title("Scatter chart")
+plt.xlabel("X Axis")
+plt.ylabel("y Axis")
+plt.show()
+
+import matplotlib.pyplot as plt
+students=['A','B','C','D']
+marks=[20,40,60,70]
+plt.bar(students,marks)
+plt.title("Bar chart")
+plt.xlabel("Student")
+plt.ylabel("marks")
+plt.show()
+
+import matplotlib.pyplot as plt
+Subjects=['Math','English','Science','History']
+marks=[20,40,60,70]
+plt.pie(marks,labels=Subjects,autopct='%1.1f%%')
+plt.title("Pie Chart")
+plt.xlabel("Subjects")
+plt.ylabel("marks")
+plt.show()
+
+import matplotlib.pyplot as plt
+data = [10,30,50,40,50,30]
+plt.hist(data)
+plt.title("Histogram Chat")
+plt.show()
+
+
+import matplotlib.pyplot as plt
+data = [10,30,50,40,50,30]
+plt.boxplot(data)
+plt.title("Box Plot")
+plt.show()
